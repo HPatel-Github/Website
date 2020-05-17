@@ -1,7 +1,15 @@
 #STRATEGY
+#The idea is simple; firms that have improved the ESG the most are expected to outperform. 
 
-# https://quantpedia.com/strategies/esg-factor-momentum-strategy/
-#
+## According to the paper (Zoltán Nagy, Altaf Kassam, Linda-Eling Lee: CAN ESG ADD ALPHA?,2016), it is expected that 
+the market could react to a change in rating in a relatively short period. 
+However, the advantages of a better-rated ESG portfolio are expected to be apparent only in the long term, 
+for example, because of increased cash flows, etc. Therefore, the strategy is to overweight, 
+relative to the MSCI World Index, companies that increased their ESG ratings most during the recent 
+past and underweight those with decreased ESG ratings. Where the increases and decreases are based on a 12-month ESG momentum. 
+Last but not least, this paper from the MSCI uses the risk model GEM3S, but the idea is important for exploration of concept rather
+than the risk model at this stage. ###
+
 # The investment universe consists of stocks in the MSCI World Index. Paper uses MSCI ESG Ratings as the ESG database.
 # The ESG Momentum strategy is built by overweighting, relative to the MSCI World Index, companies that increased their
 # ESG ratings most during the recent past and underweight those with decreased ESG ratings, where the increases and decreases
@@ -198,3 +206,10 @@ class ESGData(PythonData):
             
         data.Value = float(split[1])
         return data
+
+#References:
+# https://quantpedia.com/strategies/esg-factor-momentum-strategy/
+# Zoltán Nagy, Altaf Kassam, Linda-Eling Lee: CAN ESG ADD ALPHA?
+# https://www.semanticscholar.org/paper/Can-ESG-Add-Alpha-An-Analysis-of-ESG-Tilt-and-Nagy-Kassam/64f77da4f8ce5906a73ffe4e9eec7c49c0960acc
+
+
