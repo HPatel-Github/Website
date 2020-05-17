@@ -25,33 +25,26 @@ class ESGFactorMomentumStrategy(QCAlgorithm):
         self.SetStartDate(2009, 6, 1)
         self.SetEndDate(2019, 12, 31)
         self.SetCash(100000)
-        
-        
+                
         
         # Decile weighting.
         # True - Value weighted
         # False - Equally weighted
-        self.value_weighting = True
-        
-        
+        self.value_weighting = True             
         self.symbol = 'SPY'
         self.AddEquity(self.symbol, Resolution.Daily)
-        
         self.esg_data = self.AddData(ESGData, 'ESG', Resolution.Daily)
         self.tickers = []
-        
         self.holding_period = 3
         self.managed_queue = deque(maxlen = self.holding_period + 1)
 
         # Monthly ESG decile data.
         self.esg = {}
         self.period = 14
-        
         self.selection_flag = False
         self.rebalance_flag = False
         self.UniverseSettings.Resolution = Resolution.Daily
         self.AddUniverse(self.CoarseSelectionFunction, self.FineSelectionFunction)
-        
         self.Schedule.On(self.DateRules.MonthStart(self.symbol), self.TimeRules.AfterMarketOpen(self.symbol), self.Selection)
     
     def OnSecuritiesChanged(self, changes):
@@ -62,28 +55,24 @@ class ESGFactorMomentumStrategy(QCAlgorithm):
         if not self.selection_flag:
             return Universe.Unchanged
     
-        self.selection_flag = False
-        
+        self.selection_flag = False        
         selected = [x.Symbol for x in coarse if (x.Symbol.Value).lower() in self.tickers]
-
         return selected
     
     def FineSelectionFunction(self, fine):
         fine = [x for x in fine if x.EarningReports.BasicAverageShares.ThreeMonths > 0 and x.EarningReports.BasicEPS.TwelveMonths > 0 and x.ValuationRatios.PERatio > 0]
-
         self.rebalance_flag = True
         
         # Momentum/market cap pair.
         momentum_market_cap = {}
-        
+       
         # Momentum calc.
         for stock in fine:
             symbol = stock.Symbol
             ticker = symbol.Value
             # ESG data for 14 months is ready.
             if ticker in self.esg and len(self.esg[ticker]) == self.esg[ticker].maxlen:
-                esg_data = [x for x in self.esg[ticker]]
-                
+                esg_data = [x for x in self.esg[ticker]]               
                 esg_decile_2_months_ago = esg_data[-3]
                 esg_decile_14_months_ago = esg_data[0]
                 
@@ -207,7 +196,7 @@ class ESGData(PythonData):
         data.Value = float(split[1])
         return data
 
-#References:
+# References:
 # https://quantpedia.com/strategies/esg-factor-momentum-strategy/
 # Zoltán Nagy, Altaf Kassam, Linda-Eling Lee: CAN ESG ADD ALPHA?
 # https://www.semanticscholar.org/paper/Can-ESG-Add-Alpha-An-Analysis-of-ESG-Tilt-and-Nagy-Kassam/64f77da4f8ce5906a73ffe4e9eec7c49c0960acc
