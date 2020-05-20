@@ -1,6 +1,6 @@
 # The strategy is based upon the idea that it is easier to exploit a negative correlation by switching between
-# two assets than by traditional asset mixing.
-# We want to test the simplest form initially to establish if we can build further on the idea going forward.
+# two assets than by traditional asset mixing. It is a simple strategy in this current form - we are testing proof of concept.
+# We want to test the simplest form initially to establish if we can build further on the idea going forward
 # Paired-switching refers to investing in one of a pair of negatively correlated equities/ETFs/Funds and
 # periodic switching of the position on the basis of either the relative performance of the two equities/ETFs/
 # Funds over a period immediately prior to the switching or some other criterion. It is based upon the idea
