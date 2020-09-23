@@ -46,7 +46,6 @@ class QuantpediaFutures(PythonData):
         data.Time = datetime.strptime(split[0], "%d.%m.%Y") + timedelta(days=1)
         data['settle'] = float(split[1])
         data.Value = float(split[1])
-
         return data
         
 # NOTE: Manager for new trades. It's represented by certain count of equally weighted brackets for long and short positions.
