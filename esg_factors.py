@@ -16,7 +16,6 @@
 
 import k_data
 from collections import deque
-
 class ESGFactorInvestingStrategy(QCAlgorithm):
 
     def Initialize(self):
