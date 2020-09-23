@@ -1,21 +1,6 @@
-
-#
-# As we have previously mentioned, the choice of the database of ESG scores can alter results. This paper uses for the assessments of 
-# environment, social, and governance performance of single firms database provided by Asset4. Scores are updated every year, therefore
-# to obtain monthly ESG data, the scores remain unchanged until the next assessment.
-# The investment universe consists of stocks of the North America region (Canada and the United States) that have ESG scores available.
-# Stocks with a price of less than one USD are excluded. Paper examines the returns as abnormal returns according to the methodology of 
-# Daniel et al. (1997). Such methodology controls for risk factors such as size, book-to-market ratio, and momentum. The idea is to match
-# a stock along with the mentioned factors to a benchmark portfolio that contains stocks with similar characteristics. Therefore, for the
-# North America region, we have 4×4 benchmark portfolios. The abnormal return is calculated as the return of stock minus the return of 
-# stock´s matching benchmark portfolio return (equation 1, page 13).
-# Finally, each month stocks are ranked according to their E, S and G scores. Long top 20% stocks of each score and short the bottom 20% 
-# stocks of each score. Therefore, we have one complex strategy that consists of three individual strategies (for representative purposes, 
-# the paper examines each strategy individually). The strategy is equally-weighted: both stocks in the quintiles and individual strategies.
-# The strategy is rebalanced yearly.
-
 import k_data
 from collections import deque
+
 class ESGFactorInvestingStrategy(QCAlgorithm):
 
     def Initialize(self):
@@ -186,5 +171,9 @@ class ESGData(PythonData):
 
 
 
-Sources:
-# https://quantpedia.com/strategies/esg-factor-investing-strategy/
+#Sources:
+#1.https://www.unpri.org/
+#2.MELAS, NAGY, NISHIKAWA, LEE, GIESE: Foundations of ESG Investing – Part 1: How ESG Affects Equity Valuation, Risk and Performance
+#3.https://www.unpri.org/listed-equity/esg-integration-in-quantitative-strategies/13.article
+#4.Daniel, K., M. Grinblatt, S. Titman, and R. Wermers (1997). Measuring mutual fund performance with characteristic-based benchmarks. Journal of Finance 52 (3), 1035– 1058.
+#5.Dorfleitner, Gregor and Utz, Sebastian and Wimmer, Maximilian: Where and When Does It Pay to Be Good? A Global Long-Term Analysis of ESG Investing
